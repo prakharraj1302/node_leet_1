@@ -12,6 +12,7 @@ app.post('/sendRequest', async (req, res) => {
     const username = data.username;
     const query = data.query;
     const variables = data.vars;
+    
 
     if (!username) {
         return res.status(400).json({"error": "Username is required"});
@@ -35,6 +36,7 @@ app.post('/sendRequest', async (req, res) => {
     try {
         // Making the POST request to LeetCode
         const response = await axios.post(url, graphqlQuery, { headers: headers });
+        console.log(res.json(response.data));
         // Return the response from LeetCode
         return res.json(response.data);
     } catch (error) {
